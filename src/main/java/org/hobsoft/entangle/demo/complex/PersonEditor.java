@@ -11,15 +11,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.complex;
+package org.hobsoft.entangle.demo.complex;
 
-import static example.complex.Converters.compose;
-import static example.complex.Converters.dateToString;
-import static example.complex.Converters.emptyStringToNull;
-import static example.complex.Converters.violationsToColor;
-import static example.complex.GridBagUtils.addRow;
-import static example.complex.Validators.canUnconvert;
-import static example.complex.Validators.isMinLength;
+import static org.hobsoft.entangle.demo.complex.Converters.compose;
+import static org.hobsoft.entangle.demo.complex.Converters.dateToString;
+import static org.hobsoft.entangle.demo.complex.Converters.emptyStringToNull;
+import static org.hobsoft.entangle.demo.complex.Converters.violationsToColor;
+import static org.hobsoft.entangle.demo.complex.GridBagUtils.addRow;
+import static org.hobsoft.entangle.demo.complex.Validators.canUnconvert;
+import static org.hobsoft.entangle.demo.complex.Validators.isMinLength;
 import static org.hobsoft.entangle.swing.SwingObservables.component;
 
 import java.awt.GridBagLayout;
@@ -28,11 +28,11 @@ import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import example.Address;
-import example.Person;
 
 import org.hobsoft.entangle.Binder;
 import org.hobsoft.entangle.Binders;
+import org.hobsoft.entangle.demo.Address;
+import org.hobsoft.entangle.demo.Person;
 
 /**
  * 

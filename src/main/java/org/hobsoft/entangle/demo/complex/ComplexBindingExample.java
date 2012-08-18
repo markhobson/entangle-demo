@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.complex;
+package org.hobsoft.entangle.demo.complex;
 
 import static org.hobsoft.entangle.Observables.bean;
 import static org.hobsoft.entangle.swing.SwingObservables.component;
@@ -32,12 +32,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import example.Converters;
-import example.Person;
 
 import org.hobsoft.entangle.Binder;
 import org.hobsoft.entangle.Binders;
 import org.hobsoft.entangle.Binding.Phase;
+import org.hobsoft.entangle.demo.Converters;
+import org.hobsoft.entangle.demo.Person;
 import org.hobsoft.entangle.Converter;
 
 /**

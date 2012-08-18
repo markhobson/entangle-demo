@@ -11,10 +11,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example;
+package org.hobsoft.entangle.demo.jsr303;
 
 import static org.hobsoft.entangle.Observables.bean;
+import static org.hobsoft.entangle.jsr303.Jsr303Converters.violationsToString;
 import static org.hobsoft.entangle.swing.SwingObservables.component;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -23,21 +31,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.validation.ConstraintViolation;
+
 
 import org.hobsoft.entangle.Binder;
 import org.hobsoft.entangle.Binders;
+import org.hobsoft.entangle.demo.Converters;
+import org.hobsoft.entangle.demo.Person;
+import org.hobsoft.entangle.jsr303.Jsr303Validators;
 
 /**
  * 
  * 
  * @author Mark Hobson
- * @version $Id: BindingExample.java 97634 2012-01-06 14:46:25Z mark@IIZUKA.CO.UK $
+ * @version $Id: Jsr303Example.java 101061 2012-05-03 13:40:58Z mark@IIZUKA.CO.UK $
  */
-public final class BindingExample
+public final class Jsr303Example
 {
 	// constructors -----------------------------------------------------------
 	
-	private BindingExample()
+	private Jsr303Example()
 	{
 		throw new AssertionError();
 	}
@@ -46,19 +59,32 @@ public final class BindingExample
 	
 	public static void main(String[] args)
 	{
+		// turn off hibernate-validator info
+		Logger.getLogger("org.hibernate.validator").setLevel(Level.WARNING);
+		
 		// create view
 		
 		JPanel viewPanel = new JPanel();
 		viewPanel.setBorder(BorderFactory.createTitledBorder("View"));
-		viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.LINE_AXIS));
+		viewPanel.setLayout(new GridBagLayout());
 		
-		viewPanel.add(new JLabel("Name"));
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.weightx = 1;
+		
+		viewPanel.add(new JLabel("Name"), constraints);
+		
 		JTextField name = new JTextField(20);
-		viewPanel.add(name);
+		viewPanel.add(name, constraints);
+		
+		JLabel message = createLabel(300);
+		message.setForeground(Color.RED);
+		constraints.gridwidth = GridBagConstraints.REMAINDER;
+		viewPanel.add(message, constraints);
 		
 		// create model
 		
-		Person model = new Person();
+		Jsr303Person model = new Jsr303Person();
 		
 		JPanel modelPanel = new JPanel();
 		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
@@ -83,13 +109,40 @@ public final class BindingExample
 
 		// bind view to model
 		
-		Binder<Void> binder = Binders.newBinder();
-		binder.bind(bean(model).string(Person.NAME)).to(component(name).text());
-		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+		Binder<ConstraintViolation<?>> binder = Binders.newBinder();
+		
+		binder.bind(bean(model).string(Person.NAME))
+			.checking(Jsr303Validators.property(Jsr303Person.class, Person.NAME))
+			.to(component(name).text());
+		
+		binder.bind(binder)
+			.using(violationsToString())
+			.to(component(message).text());
+
+		binder.bind(bean(model))
+			.using(Converters.<Jsr303Person>toStringConverter())
+			.to(component(modelArea).text());
+		
 		binder.bind();
 
 		// show view
 		
 		frame.setVisible(true);
+	}
+	
+	// private methods --------------------------------------------------------
+	
+	private static JLabel createLabel(final int preferredWidth)
+	{
+		return new JLabel()
+		{
+			@Override
+			public Dimension getPreferredSize()
+			{
+				Dimension size = super.getPreferredSize();
+				size.width = preferredWidth;
+				return size;
+			}
+		};
 	}
 }

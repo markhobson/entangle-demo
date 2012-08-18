@@ -11,12 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.complex;
+package org.hobsoft.entangle.demo.complex;
 
-import static example.complex.Converters.emptyStringToNull;
-import static example.complex.Converters.violationsToColor;
-import static example.complex.GridBagUtils.addRow;
-import static example.complex.Validators.isNotNull;
+import static org.hobsoft.entangle.demo.complex.Converters.emptyStringToNull;
+import static org.hobsoft.entangle.demo.complex.Converters.violationsToColor;
+import static org.hobsoft.entangle.demo.complex.GridBagUtils.addRow;
+import static org.hobsoft.entangle.demo.complex.Validators.isNotNull;
 import static org.hobsoft.entangle.swing.SwingObservables.component;
 
 import java.awt.GridBagLayout;
@@ -24,10 +24,10 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import example.Address;
 
 import org.hobsoft.entangle.Binder;
 import org.hobsoft.entangle.Binders;
+import org.hobsoft.entangle.demo.Address;
 
 /**
  * 

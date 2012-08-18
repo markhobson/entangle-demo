@@ -11,11 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.jsr303;
+package org.hobsoft.entangle.demo.jsr303;
 
 import javax.validation.constraints.Size;
 
-import example.Person;
+import org.hobsoft.entangle.demo.Person;
+
 
 /**
  * 

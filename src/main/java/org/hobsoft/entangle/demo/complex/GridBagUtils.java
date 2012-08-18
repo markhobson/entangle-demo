@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.complex;
+package org.hobsoft.entangle.demo.complex;
 
 import java.awt.Component;
 import java.awt.Container;
