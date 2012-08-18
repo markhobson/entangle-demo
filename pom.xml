@@ -22,9 +22,9 @@
 	<name>Common Binding Example</name>
 	
 	<scm>
-		<connection>scm:svn:https://svn.iizuka.co.uk/people/mark/common-binding-example/tags/1.0.0-beta-1</connection>
-		<developerConnection>scm:svn:https://svn.iizuka.co.uk/people/mark/common-binding-example/tags/1.0.0-beta-1</developerConnection>
-		<url>https://svn.iizuka.co.uk/people/mark/common-binding-example/tags/1.0.0-beta-1</url>
+		<connection>scm:git:git@github.com:markhobson/entangle-demo.git</connection>
+		<developerConnection>scm:git:git@github.com:markhobson/entangle-demo.git</developerConnection>
+		<url>https://github.com/markhobson/entangle-demo</url>
 	</scm>
 	
 	<dependencies>
