@@ -8,18 +8,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<parent>
-		<groupId>uk.co.iizuka</groupId>
-		<artifactId>iizuka-parent</artifactId>
-		<version>3.1.0-beta-2</version>
+		<groupId>org.hobsoft.entangle</groupId>
+		<artifactId>entangle-parent</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>test</groupId>
-	<artifactId>common-binding-example</artifactId>
+	<groupId>org.hobsoft.entangle</groupId>
+	<artifactId>entangle-demo</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0-beta-1</version>
+	<version>0.1.0-SNAPSHOT</version>
 	
-	<name>Common Binding Example</name>
+	<name>Entangle Demo</name>
 	
 	<scm>
 		<connection>scm:git:git@github.com:markhobson/entangle-demo.git</connection>
@@ -30,9 +30,9 @@
 	<dependencies>
 	
 		<dependency>
-			<groupId>uk.co.iizuka.common</groupId>
-			<artifactId>common-binding-swing</artifactId>
-			<version>1.0.0-beta-1</version>
+			<groupId>org.hobsoft.entangle</groupId>
+			<artifactId>entangle-swing</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
 		</dependency>
 		
 		<!-- common-validate example -->
@@ -46,9 +46,9 @@
 		<!-- jsr303 example -->
 		
 		<dependency>
-			<groupId>uk.co.iizuka.common</groupId>
-			<artifactId>common-binding-jsr303</artifactId>
-			<version>1.0.0-beta-1</version>
+			<groupId>org.hobsoft.entangle</groupId>
+			<artifactId>entangle-jsr303</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
