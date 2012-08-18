@@ -106,7 +106,7 @@ public final class ComplexBindingExample
 		framePanel.add(viewPanel, BorderLayout.PAGE_START);
 		framePanel.add(modelPanel, BorderLayout.CENTER);
 		
-		final JFrame frame = new JFrame("Common Binding Example");
+		final JFrame frame = new JFrame("Entangle Demo");
 		frame.setLocationByPlatform(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(framePanel);

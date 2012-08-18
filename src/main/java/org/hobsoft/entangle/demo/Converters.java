@@ -22,7 +22,7 @@ import org.hobsoft.entangle.Converter;
  */
 public final class Converters
 {
-	// TODO: move to common-binding?
+	// TODO: move to entangle?
 	
 	// constants --------------------------------------------------------------
 

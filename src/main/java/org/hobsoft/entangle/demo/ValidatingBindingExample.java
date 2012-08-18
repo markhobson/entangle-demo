@@ -93,7 +93,7 @@ public final class ValidatingBindingExample
 		framePanel.add(viewPanel);
 		framePanel.add(modelPanel);
 		
-		JFrame frame = new JFrame("Common Binding Example");
+		JFrame frame = new JFrame("Entangle Demo");
 		frame.setLocationByPlatform(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(framePanel);
