@@ -1,0 +1,87 @@
+/*
+ * $HeadURL: https://svn.iizuka.co.uk/people/mark/common-binding-example/tags/1.0.0-beta-1/src/main/java/example/BindingExample.java $
+ * 
+ * (c) 2011 IIZUKA Software Technologies Ltd.  All rights reserved.
+ */
+package example;
+
+import static uk.co.iizuka.common.binding.Observables.bean;
+import static uk.co.iizuka.common.binding.swing.SwingObservables.component;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import uk.co.iizuka.common.binding.Binder;
+import uk.co.iizuka.common.binding.Binders;
+
+/**
+ * 
+ * 
+ * @author Mark Hobson
+ * @version $Id: BindingExample.java 97634 2012-01-06 14:46:25Z mark@IIZUKA.CO.UK $
+ */
+public final class BindingExample
+{
+	// constructors -----------------------------------------------------------
+	
+	private BindingExample()
+	{
+		throw new AssertionError();
+	}
+	
+	// public methods ---------------------------------------------------------
+	
+	public static void main(String[] args)
+	{
+		// create view
+		
+		JPanel viewPanel = new JPanel();
+		viewPanel.setBorder(BorderFactory.createTitledBorder("View"));
+		viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.LINE_AXIS));
+		
+		viewPanel.add(new JLabel("Name"));
+		JTextField name = new JTextField(20);
+		viewPanel.add(name);
+		
+		// create model
+		
+		Person model = new Person();
+		
+		JPanel modelPanel = new JPanel();
+		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
+		modelPanel.setLayout(new BoxLayout(modelPanel, BoxLayout.LINE_AXIS));
+		
+		JTextArea modelArea = new JTextArea(model.toString());
+		modelArea.setEditable(false);
+		modelPanel.add(modelArea);
+		
+		// create frame
+		
+		JPanel framePanel = new JPanel();
+		framePanel.setLayout(new BoxLayout(framePanel, BoxLayout.PAGE_AXIS));
+		framePanel.add(viewPanel);
+		framePanel.add(modelPanel);
+		
+		JFrame frame = new JFrame("Common Binding Example");
+		frame.setLocationByPlatform(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(framePanel);
+		frame.pack();
+
+		// bind view to model
+		
+		Binder<Void> binder = Binders.newBinder();
+		binder.bind(bean(model).string(Person.NAME)).to(component(name).text());
+		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+		binder.bind();
+
+		// show view
+		
+		frame.setVisible(true);
+	}
+}

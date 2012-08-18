@@ -1,0 +1,164 @@
+/*
+ * $HeadURL: https://svn.iizuka.co.uk/people/mark/common-binding-example/tags/1.0.0-beta-1/src/main/java/example/ValidatingBindingExample.java $
+ * 
+ * (c) 2011 IIZUKA Software Technologies Ltd.  All rights reserved.
+ */
+package example;
+
+import static uk.co.iizuka.common.binding.Observables.bean;
+import static uk.co.iizuka.common.binding.swing.SwingObservables.component;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.util.Collection;
+import java.util.Collections;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import uk.co.iizuka.common.binding.Binder;
+import uk.co.iizuka.common.binding.Binders;
+import uk.co.iizuka.common.binding.Converter;
+import uk.co.iizuka.common.binding.Validator;
+
+/**
+ * 
+ * 
+ * @author Mark Hobson
+ * @version $Id: ValidatingBindingExample.java 97901 2012-01-19 14:58:48Z mark@IIZUKA.CO.UK $
+ */
+public final class ValidatingBindingExample
+{
+	// constructors -----------------------------------------------------------
+	
+	private ValidatingBindingExample()
+	{
+		throw new AssertionError();
+	}
+	
+	// public methods ---------------------------------------------------------
+	
+	public static void main(String[] args)
+	{
+		// create view
+		
+		JPanel viewPanel = new JPanel();
+		viewPanel.setBorder(BorderFactory.createTitledBorder("View"));
+		viewPanel.setLayout(new GridBagLayout());
+		
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.weightx = 1;
+		
+		viewPanel.add(new JLabel("Name"), constraints);
+		
+		JTextField name = new JTextField(20);
+		viewPanel.add(name, constraints);
+		
+		JLabel message = createLabel(300);
+		message.setForeground(Color.RED);
+		constraints.gridwidth = GridBagConstraints.REMAINDER;
+		viewPanel.add(message, constraints);
+		
+		// create model
+		
+		Person model = new Person();
+		
+		JPanel modelPanel = new JPanel();
+		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
+		modelPanel.setLayout(new BoxLayout(modelPanel, BoxLayout.LINE_AXIS));
+		
+		JTextArea modelArea = new JTextArea(model.toString());
+		modelArea.setEditable(false);
+		modelPanel.add(modelArea);
+		
+		// create frame
+		
+		JPanel framePanel = new JPanel();
+		framePanel.setLayout(new BoxLayout(framePanel, BoxLayout.PAGE_AXIS));
+		framePanel.add(viewPanel);
+		framePanel.add(modelPanel);
+		
+		JFrame frame = new JFrame("Common Binding Example");
+		frame.setLocationByPlatform(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(framePanel);
+		frame.pack();
+
+		// bind view to model
+		
+		Binder<String> binder = Binders.newBinder();
+		
+		Validator<String, String> validator = new Validator<String, String>()
+		{
+			@Override
+			public Collection<String> validate(String string)
+			{
+				return (string != null && string.length() < 3)
+					? Collections.singleton("* Name must be 3 characters or more") : null;
+			}
+		};
+		
+		binder.bind(bean(model).string(Person.NAME)).checking(validator).to(component(name).text());
+		
+		Converter<Collection<String>, String> converter = new Converter<Collection<String>, String>()
+		{
+			@Override
+			public String convert(Collection<String> strings)
+			{
+				StringBuilder builder = new StringBuilder();
+				
+				for (String string : strings)
+				{
+					if (builder.length() > 0)
+					{
+						builder.append("; ");
+					}
+					
+					builder.append(string);
+				}
+				
+				return builder.toString();
+			}
+			
+			@Override
+			public Collection<String> unconvert(String string)
+			{
+				throw new UnsupportedOperationException();
+			}
+		};
+		
+		binder.bind(binder).using(converter).to(component(message).text());
+
+		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+		
+		binder.bind();
+
+		// show view
+		
+		frame.setVisible(true);
+	}
+	
+	// private methods --------------------------------------------------------
+	
+	private static JLabel createLabel(final int preferredWidth)
+	{
+		return new JLabel()
+		{
+			@Override
+			public Dimension getPreferredSize()
+			{
+				Dimension size = super.getPreferredSize();
+				size.width = preferredWidth;
+				return size;
+			}
+		};
+	}
+}

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	$HeadURL: https://svn.iizuka.co.uk/people/mark/common-binding-example/tags/1.0.0-beta-1/pom.xml $
+	
+	(c) 2010 IIZUKA Software Technologies Ltd.  All rights reserved.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>uk.co.iizuka</groupId>
+		<artifactId>iizuka-parent</artifactId>
+		<version>3.1.0-beta-2</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>test</groupId>
+	<artifactId>common-binding-example</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0-beta-1</version>
+	
+	<name>Common Binding Example</name>
+	
+	<scm>
+		<connection>scm:svn:https://svn.iizuka.co.uk/people/mark/common-binding-example/tags/1.0.0-beta-1</connection>
+		<developerConnection>scm:svn:https://svn.iizuka.co.uk/people/mark/common-binding-example/tags/1.0.0-beta-1</developerConnection>
+		<url>https://svn.iizuka.co.uk/people/mark/common-binding-example/tags/1.0.0-beta-1</url>
+	</scm>
+	
+	<dependencies>
+	
+		<dependency>
+			<groupId>uk.co.iizuka.common</groupId>
+			<artifactId>common-binding-swing</artifactId>
+			<version>1.0.0-beta-1</version>
+		</dependency>
+		
+		<!-- common-validate example -->
+		
+		<dependency>
+			<groupId>uk.co.iizuka.common</groupId>
+			<artifactId>common-binding-validate</artifactId>
+			<version>1.0.0-beta-1</version>
+		</dependency>
+		
+		<!-- jsr303 example -->
+		
+		<dependency>
+			<groupId>uk.co.iizuka.common</groupId>
+			<artifactId>common-binding-jsr303</artifactId>
+			<version>1.0.0-beta-1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.1.12</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>1.6.1</version>
+			<scope>runtime</scope>
+		</dependency>
+	
+	</dependencies>
+
+</project>
