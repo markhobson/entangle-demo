@@ -31,12 +31,20 @@
 	<version>0.1.0-SNAPSHOT</version>
 	
 	<name>Entangle Demo</name>
+	<description>Entangle demonstrations.</description>
+	<url>https://github.com/markhobson/entangle-demo</url>
+	<inceptionYear>2011</inceptionYear>
 	
 	<scm>
 		<connection>scm:git:git@github.com:markhobson/entangle-demo.git</connection>
 		<developerConnection>scm:git:git@github.com:markhobson/entangle-demo.git</developerConnection>
 		<url>https://github.com/markhobson/entangle-demo</url>
 	</scm>
+	
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/markhobson/entangle-demo/issues</url>
+	</issueManagement>
 	
 	<dependencies>
 	
@@ -83,5 +91,13 @@
 		</dependency>
 	
 	</dependencies>
+
+	<distributionManagement>
+		<site>
+			<id>github-site</id>
+			<name>Entangle Demo Maven Site</name>
+			<url>gitsite:git@github.com/markhobson/entangle-demo.git</url>
+		</site>
+	</distributionManagement>
 
 </project>
