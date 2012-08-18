@@ -17,7 +17,6 @@ import javax.validation.constraints.Size;
 
 import org.hobsoft.entangle.demo.Person;
 
-
 /**
  * 
  * 
