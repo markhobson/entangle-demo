@@ -13,21 +13,20 @@
  */
 package org.hobsoft.entangle.demo.complex;
 
-import static org.hobsoft.entangle.demo.complex.Converters.emptyStringToNull;
-import static org.hobsoft.entangle.demo.complex.Converters.violationsToColor;
-import static org.hobsoft.entangle.demo.complex.GridBagUtils.addRow;
-import static org.hobsoft.entangle.demo.complex.Validators.isNotNull;
-import static org.hobsoft.entangle.swing.SwingObservables.component;
-
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-
 import org.hobsoft.entangle.Binder;
 import org.hobsoft.entangle.Binders;
 import org.hobsoft.entangle.demo.Address;
+
+import static org.hobsoft.entangle.demo.complex.Converters.emptyStringToNull;
+import static org.hobsoft.entangle.demo.complex.Converters.violationsToColor;
+import static org.hobsoft.entangle.demo.complex.GridBagUtils.addRow;
+import static org.hobsoft.entangle.demo.complex.Validators.isNotNull;
+import static org.hobsoft.entangle.swing.SwingObservables.component;
 
 /**
  * 

@@ -13,9 +13,6 @@
  */
 package org.hobsoft.entangle.demo;
 
-import static org.hobsoft.entangle.Observables.bean;
-import static org.hobsoft.entangle.swing.SwingObservables.component;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -26,6 +23,9 @@ import javax.swing.JTextField;
 
 import org.hobsoft.entangle.Binder;
 import org.hobsoft.entangle.Binders;
+
+import static org.hobsoft.entangle.Observables.bean;
+import static org.hobsoft.entangle.swing.SwingObservables.component;
 
 /**
  * 

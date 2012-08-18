@@ -13,6 +13,17 @@
  */
 package org.hobsoft.entangle.demo.complex;
 
+import java.awt.GridBagLayout;
+import java.util.Date;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import org.hobsoft.entangle.Binder;
+import org.hobsoft.entangle.Binders;
+import org.hobsoft.entangle.demo.Address;
+import org.hobsoft.entangle.demo.Person;
+
 import static org.hobsoft.entangle.demo.complex.Converters.compose;
 import static org.hobsoft.entangle.demo.complex.Converters.dateToString;
 import static org.hobsoft.entangle.demo.complex.Converters.emptyStringToNull;
@@ -21,18 +32,6 @@ import static org.hobsoft.entangle.demo.complex.GridBagUtils.addRow;
 import static org.hobsoft.entangle.demo.complex.Validators.canUnconvert;
 import static org.hobsoft.entangle.demo.complex.Validators.isMinLength;
 import static org.hobsoft.entangle.swing.SwingObservables.component;
-
-import java.awt.GridBagLayout;
-import java.util.Date;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-
-import org.hobsoft.entangle.Binder;
-import org.hobsoft.entangle.Binders;
-import org.hobsoft.entangle.demo.Address;
-import org.hobsoft.entangle.demo.Person;
 
 /**
  * 

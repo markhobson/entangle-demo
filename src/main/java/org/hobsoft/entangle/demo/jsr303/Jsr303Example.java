@@ -13,10 +13,6 @@
  */
 package org.hobsoft.entangle.demo.jsr303;
 
-import static org.hobsoft.entangle.Observables.bean;
-import static org.hobsoft.entangle.jsr303.Jsr303Converters.violationsToString;
-import static org.hobsoft.entangle.swing.SwingObservables.component;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -33,12 +29,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.validation.ConstraintViolation;
 
-
 import org.hobsoft.entangle.Binder;
 import org.hobsoft.entangle.Binders;
 import org.hobsoft.entangle.demo.Converters;
 import org.hobsoft.entangle.demo.Person;
 import org.hobsoft.entangle.jsr303.Jsr303Validators;
+
+import static org.hobsoft.entangle.Observables.bean;
+import static org.hobsoft.entangle.jsr303.Jsr303Converters.violationsToString;
+import static org.hobsoft.entangle.swing.SwingObservables.component;
 
 /**
  * 

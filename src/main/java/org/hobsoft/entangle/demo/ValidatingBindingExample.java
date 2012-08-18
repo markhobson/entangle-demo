@@ -13,9 +13,6 @@
  */
 package org.hobsoft.entangle.demo;
 
-import static org.hobsoft.entangle.Observables.bean;
-import static org.hobsoft.entangle.swing.SwingObservables.component;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -35,6 +32,9 @@ import org.hobsoft.entangle.Binder;
 import org.hobsoft.entangle.Binders;
 import org.hobsoft.entangle.Converter;
 import org.hobsoft.entangle.Validator;
+
+import static org.hobsoft.entangle.Observables.bean;
+import static org.hobsoft.entangle.swing.SwingObservables.component;
 
 /**
  * 

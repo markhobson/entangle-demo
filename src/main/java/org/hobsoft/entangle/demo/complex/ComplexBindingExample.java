@@ -13,9 +13,6 @@
  */
 package org.hobsoft.entangle.demo.complex;
 
-import static org.hobsoft.entangle.Observables.bean;
-import static org.hobsoft.entangle.swing.SwingObservables.component;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -32,13 +29,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-
 import org.hobsoft.entangle.Binder;
 import org.hobsoft.entangle.Binders;
 import org.hobsoft.entangle.Binding.Phase;
+import org.hobsoft.entangle.Converter;
 import org.hobsoft.entangle.demo.Converters;
 import org.hobsoft.entangle.demo.Person;
-import org.hobsoft.entangle.Converter;
+
+import static org.hobsoft.entangle.Observables.bean;
+import static org.hobsoft.entangle.swing.SwingObservables.component;
 
 /**
  * 
