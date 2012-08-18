@@ -20,7 +20,6 @@ import java.beans.PropertyChangeSupport;
  * 
  * 
  * @author Mark Hobson
- * @version $Id: Address.java 97901 2012-01-19 14:58:48Z mark@IIZUKA.CO.UK $
  */
 public class Address
 {

@@ -33,7 +33,6 @@ import org.hobsoft.entangle.demo.Address;
  * 
  * 
  * @author Mark Hobson
- * @version $Id: AddressEditor.java 97901 2012-01-19 14:58:48Z mark@IIZUKA.CO.UK $
  */
 public class AddressEditor extends EditorPanel<Address, String>
 {

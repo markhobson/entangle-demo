@@ -21,7 +21,6 @@ import java.util.Date;
  * 
  * 
  * @author Mark Hobson
- * @version $Id: Person.java 97901 2012-01-19 14:58:48Z mark@IIZUKA.CO.UK $
  */
 public class Person
 {

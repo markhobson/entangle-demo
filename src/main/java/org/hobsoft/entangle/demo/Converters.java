@@ -19,7 +19,6 @@ import org.hobsoft.entangle.Converter;
  * 
  * 
  * @author Mark Hobson
- * @version $Id: Converters.java 97393 2011-12-29 10:29:43Z mark@IIZUKA.CO.UK $
  */
 public final class Converters
 {

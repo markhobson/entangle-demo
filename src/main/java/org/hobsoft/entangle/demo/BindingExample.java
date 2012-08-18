@@ -31,7 +31,6 @@ import org.hobsoft.entangle.Binders;
  * 
  * 
  * @author Mark Hobson
- * @version $Id: BindingExample.java 97634 2012-01-06 14:46:25Z mark@IIZUKA.CO.UK $
  */
 public final class BindingExample
 {

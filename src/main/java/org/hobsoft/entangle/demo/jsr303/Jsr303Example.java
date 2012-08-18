@@ -44,7 +44,6 @@ import org.hobsoft.entangle.jsr303.Jsr303Validators;
  * 
  * 
  * @author Mark Hobson
- * @version $Id: Jsr303Example.java 101061 2012-05-03 13:40:58Z mark@IIZUKA.CO.UK $
  */
 public final class Jsr303Example
 {

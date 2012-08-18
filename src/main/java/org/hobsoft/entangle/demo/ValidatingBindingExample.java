@@ -40,7 +40,6 @@ import org.hobsoft.entangle.Validator;
  * 
  * 
  * @author Mark Hobson
- * @version $Id: ValidatingBindingExample.java 97901 2012-01-19 14:58:48Z mark@IIZUKA.CO.UK $
  */
 public final class ValidatingBindingExample
 {

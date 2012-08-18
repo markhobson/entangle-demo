@@ -44,7 +44,6 @@ import org.hobsoft.entangle.Converter;
  * 
  * 
  * @author Mark Hobson
- * @version $Id: ComplexBindingExample.java 97901 2012-01-19 14:58:48Z mark@IIZUKA.CO.UK $
  */
 public final class ComplexBindingExample
 {

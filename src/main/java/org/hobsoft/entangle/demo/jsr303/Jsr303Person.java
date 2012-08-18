@@ -22,7 +22,6 @@ import org.hobsoft.entangle.demo.Person;
  * 
  * 
  * @author Mark Hobson
- * @version $Id: Jsr303Person.java 88840 2011-06-09 11:33:29Z mark@IIZUKA.CO.UK $
  */
 public class Jsr303Person extends Person
 {
