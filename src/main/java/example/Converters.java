@@ -21,13 +21,11 @@ public final class Converters
 
 	private static final Converter<Object, String> TO_STRING = new Converter<Object, String>()
 	{
-		@Override
 		public String convert(Object object)
 		{
 			return String.valueOf(object);
 		}
 		
-		@Override
 		public Object unconvert(String target)
 		{
 			throw new UnsupportedOperationException();

@@ -98,7 +98,6 @@ public final class ValidatingBindingExample
 		
 		Validator<String, String> validator = new Validator<String, String>()
 		{
-			@Override
 			public Collection<String> validate(String string)
 			{
 				return (string != null && string.length() < 3)
@@ -110,7 +109,6 @@ public final class ValidatingBindingExample
 		
 		Converter<Collection<String>, String> converter = new Converter<Collection<String>, String>()
 		{
-			@Override
 			public String convert(Collection<String> strings)
 			{
 				StringBuilder builder = new StringBuilder();
@@ -128,7 +126,6 @@ public final class ValidatingBindingExample
 				return builder.toString();
 			}
 			
-			@Override
 			public Collection<String> unconvert(String string)
 			{
 				throw new UnsupportedOperationException();

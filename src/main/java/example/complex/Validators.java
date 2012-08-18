@@ -32,7 +32,6 @@ public final class Validators
 	{
 		return new Validator<Object, String>()
 		{
-			@Override
 			public Collection<String> validate(Object value)
 			{
 				return (value == null) ? Collections.singleton(message) : null;
@@ -44,7 +43,6 @@ public final class Validators
 	{
 		return new Validator<String, String>()
 		{
-			@Override
 			public Collection<String> validate(String string)
 			{
 				return (string != null && string.length() < length) ? Collections.singleton(message) : null;
@@ -56,7 +54,6 @@ public final class Validators
 	{
 		return new Validator<T, String>()
 		{
-			@Override
 			public Collection<String> validate(T target)
 			{
 				try

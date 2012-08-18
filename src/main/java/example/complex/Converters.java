@@ -26,13 +26,11 @@ public final class Converters
 	
 	private static final Converter<String, String> EMPTY_STRING_TO_NULL = new Converter<String, String>()
 	{
-		@Override
 		public String convert(String string)
 		{
 			return (string != null && string.length() == 0) ? null : string;
 		}
 		
-		@Override
 		public String unconvert(String string)
 		{
 			return convert(string);
@@ -52,13 +50,11 @@ public final class Converters
 	{
 		return new Converter<S, U>()
 		{
-			@Override
 			public U convert(S object)
 			{
 				return converter2.convert(converter1.convert(object));
 			}
 			
-			@Override
 			public S unconvert(U object)
 			{
 				return converter1.unconvert(converter2.unconvert(object));
@@ -84,13 +80,11 @@ public final class Converters
 	{
 		return new Converter<Date, String>()
 		{
-			@Override
 			public String convert(Date date)
 			{
 				return (date != null) ? format.format(date) : null;
 			}
 			
-			@Override
 			public Date unconvert(String string)
 			{
 				try
@@ -110,13 +104,11 @@ public final class Converters
 	{
 		return new Converter<Collection<String>, Color>()
 		{
-			@Override
 			public Color convert(Collection<String> violations)
 			{
 				return violations.isEmpty() ? Color.WHITE : new Color(255, 224, 224);
 			}
 			
-			@Override
 			public Collection<String> unconvert(Color target)
 			{
 				throw new UnsupportedOperationException();

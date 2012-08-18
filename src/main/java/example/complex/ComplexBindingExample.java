@@ -76,7 +76,6 @@ public final class ComplexBindingExample
 		JButton okButton = new JButton("OK");
 		okButton.addActionListener(new ActionListener()
 		{
-			@Override
 			public void actionPerformed(ActionEvent event)
 			{
 				editor.pull();
@@ -132,13 +131,11 @@ public final class ComplexBindingExample
 	{
 		return new Converter<Collection<String>, String>()
 		{
-			@Override
 			public String convert(Collection<String> strings)
 			{
 				return strings.isEmpty() ? " " : strings.iterator().next();
 			}
 			
-			@Override
 			public Collection<String> unconvert(String string)
 			{
 				throw new UnsupportedOperationException();
@@ -150,13 +147,11 @@ public final class ComplexBindingExample
 	{
 		return new Converter<Collection<String>, Boolean>()
 		{
-			@Override
 			public Boolean convert(Collection<String> collection)
 			{
 				return collection.isEmpty();
 			}
 			
-			@Override
 			public Collection<String> unconvert(Boolean empty)
 			{
 				throw new UnsupportedOperationException();
