@@ -5,7 +5,7 @@
  */
 package example;
 
-import uk.co.iizuka.common.binding.Converter;
+import org.hobsoft.entangle.Converter;
 
 /**
  * 

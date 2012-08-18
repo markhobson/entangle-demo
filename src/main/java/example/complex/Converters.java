@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
-import uk.co.iizuka.common.binding.Converter;
+import org.hobsoft.entangle.Converter;
 
 /**
  * 

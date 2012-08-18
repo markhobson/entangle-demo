@@ -12,7 +12,7 @@ import static example.complex.Converters.violationsToColor;
 import static example.complex.GridBagUtils.addRow;
 import static example.complex.Validators.canUnconvert;
 import static example.complex.Validators.isMinLength;
-import static uk.co.iizuka.common.binding.swing.SwingObservables.component;
+import static org.hobsoft.entangle.swing.SwingObservables.component;
 
 import java.awt.GridBagLayout;
 import java.util.Date;
@@ -23,8 +23,8 @@ import javax.swing.JTextField;
 import example.Address;
 import example.Person;
 
-import uk.co.iizuka.common.binding.Binder;
-import uk.co.iizuka.common.binding.Binders;
+import org.hobsoft.entangle.Binder;
+import org.hobsoft.entangle.Binders;
 
 /**
  * 

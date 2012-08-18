@@ -7,10 +7,10 @@ package example.complex;
 
 import javax.swing.JPanel;
 
-import uk.co.iizuka.common.binding.Binder;
-import uk.co.iizuka.common.binding.Binders;
-import uk.co.iizuka.common.binding.Observables;
-import uk.co.iizuka.common.binding.Observables.BeanObservables;
+import org.hobsoft.entangle.Binder;
+import org.hobsoft.entangle.Binders;
+import org.hobsoft.entangle.Observables;
+import org.hobsoft.entangle.Observables.BeanObservables;
 
 /**
  * 

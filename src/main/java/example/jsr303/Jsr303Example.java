@@ -5,9 +5,9 @@
  */
 package example.jsr303;
 
-import static uk.co.iizuka.common.binding.Observables.bean;
-import static uk.co.iizuka.common.binding.jsr303.Jsr303Converters.violationsToString;
-import static uk.co.iizuka.common.binding.swing.SwingObservables.component;
+import static org.hobsoft.entangle.Observables.bean;
+import static org.hobsoft.entangle.jsr303.Jsr303Converters.violationsToString;
+import static org.hobsoft.entangle.swing.SwingObservables.component;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,9 +28,9 @@ import javax.validation.ConstraintViolation;
 import example.Converters;
 import example.Person;
 
-import uk.co.iizuka.common.binding.Binder;
-import uk.co.iizuka.common.binding.Binders;
-import uk.co.iizuka.common.binding.jsr303.Jsr303Validators;
+import org.hobsoft.entangle.Binder;
+import org.hobsoft.entangle.Binders;
+import org.hobsoft.entangle.jsr303.Jsr303Validators;
 
 /**
  * 

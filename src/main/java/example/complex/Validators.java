@@ -8,8 +8,8 @@ package example.complex;
 import java.util.Collection;
 import java.util.Collections;
 
-import uk.co.iizuka.common.binding.Converter;
-import uk.co.iizuka.common.binding.Validator;
+import org.hobsoft.entangle.Converter;
+import org.hobsoft.entangle.Validator;
 
 /**
  * 

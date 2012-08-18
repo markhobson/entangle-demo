@@ -5,8 +5,8 @@
  */
 package example;
 
-import static uk.co.iizuka.common.binding.Observables.bean;
-import static uk.co.iizuka.common.binding.swing.SwingObservables.component;
+import static org.hobsoft.entangle.Observables.bean;
+import static org.hobsoft.entangle.swing.SwingObservables.component;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -23,10 +23,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import uk.co.iizuka.common.binding.Binder;
-import uk.co.iizuka.common.binding.Binders;
-import uk.co.iizuka.common.binding.Converter;
-import uk.co.iizuka.common.binding.Validator;
+import org.hobsoft.entangle.Binder;
+import org.hobsoft.entangle.Binders;
+import org.hobsoft.entangle.Converter;
+import org.hobsoft.entangle.Validator;
 
 /**
  * 
