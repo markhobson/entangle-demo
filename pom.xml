@@ -35,14 +35,6 @@
 			<version>0.1.0-SNAPSHOT</version>
 		</dependency>
 		
-		<!-- common-validate example -->
-		
-		<dependency>
-			<groupId>uk.co.iizuka.common</groupId>
-			<artifactId>common-binding-validate</artifactId>
-			<version>1.0.0-beta-1</version>
-		</dependency>
-		
 		<!-- jsr303 example -->
 		
 		<dependency>
