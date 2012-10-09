@@ -108,9 +108,9 @@
 
 	<distributionManagement>
 		<site>
-			<id>github-site</id>
+			<id>site</id>
 			<name>Entangle Demo Maven Site</name>
-			<url>gitsite:git@github.com/markhobson/entangle-demo.git</url>
+			<url>scm:git:git@github.com:markhobson/entangle-demo.git</url>
 		</site>
 	</distributionManagement>
 
