@@ -1,4 +1,4 @@
-entangle-demo
+Entangle Demo
 =============
 
 Entangle demonstrations.
