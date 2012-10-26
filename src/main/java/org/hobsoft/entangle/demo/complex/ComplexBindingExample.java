@@ -74,7 +74,7 @@ public class ComplexBindingExample extends JFrame
 
 	// private methods --------------------------------------------------------
 	
-	private Component createFramePanel()
+	private JPanel createFramePanel()
 	{
 		JPanel panel = new JPanel(new BorderLayout(4, 4));
 		panel.add(createViewPanel(), BorderLayout.PAGE_START);
@@ -83,7 +83,7 @@ public class ComplexBindingExample extends JFrame
 		return panel;
 	}
 
-	private Component createViewPanel()
+	private JPanel createViewPanel()
 	{
 		messageLabel = new JLabel(" ");
 		messageLabel.setForeground(Color.RED);
@@ -117,7 +117,7 @@ public class ComplexBindingExample extends JFrame
 		return panel;
 	}
 
-	private Component createModelPanel()
+	private JPanel createModelPanel()
 	{
 		JPanel panel = new JPanel(new BorderLayout(4, 4));
 		panel.setBorder(BorderFactory.createTitledBorder("Model"));
