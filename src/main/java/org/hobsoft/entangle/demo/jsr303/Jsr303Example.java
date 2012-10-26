@@ -66,29 +66,11 @@ public class Jsr303Example extends JFrame
 		add(createFramePanel());
 		pack();
 		
-		// create model
-		
 		model = new Jsr303Person();
 		
-		// bind view to model
-		
-		Binder<ConstraintViolation<?>> binder = Binders.newBinder();
-		
-		binder.bind(bean(model).string(Person.NAME))
-			.checking(Jsr303Validators.property(Jsr303Person.class, Person.NAME))
-			.to(component(nameField).text());
-		
-		binder.bind(binder)
-			.using(violationsToString())
-			.to(component(messageLabel).text());
-
-		binder.bind(bean(model))
-			.using(Converters.<Jsr303Person>toStringConverter())
-			.to(component(modelArea).text());
-		
-		binder.bind();
+		bind();
 	}
-	
+
 	// private methods --------------------------------------------------------
 	
 	private static JLabel createLabel(final int preferredWidth)
@@ -151,6 +133,25 @@ public class Jsr303Example extends JFrame
 		return panel;
 	}
 
+	private void bind()
+	{
+		Binder<ConstraintViolation<?>> binder = Binders.newBinder();
+		
+		binder.bind(bean(model).string(Person.NAME))
+			.checking(Jsr303Validators.property(Jsr303Person.class, Person.NAME))
+			.to(component(nameField).text());
+		
+		binder.bind(binder)
+			.using(violationsToString())
+			.to(component(messageLabel).text());
+
+		binder.bind(bean(model))
+			.using(Converters.<Jsr303Person>toStringConverter())
+			.to(component(modelArea).text());
+		
+		binder.bind();
+	}
+	
 	// main -------------------------------------------------------------------
 	
 	public static void main(String[] args)

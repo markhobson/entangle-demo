@@ -63,21 +63,9 @@ public class ValidatingBindingExample extends JFrame
 		add(createFramePanel());
 		pack();
 		
-		// create model
-		
 		model = new Person();
 		
-		// bind view to model
-		
-		Binder<String> binder = Binders.newBinder();
-		
-		binder.bind(bean(model).string(Person.NAME)).checking(minLength()).to(component(nameField).text());
-		
-		binder.bind(binder).using(violationsToString()).to(component(messageLabel).text());
-
-		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
-		
-		binder.bind();
+		bind();
 	}
 
 	// private methods --------------------------------------------------------
@@ -142,6 +130,19 @@ public class ValidatingBindingExample extends JFrame
 		};
 	}
 	
+	private void bind()
+	{
+		Binder<String> binder = Binders.newBinder();
+		
+		binder.bind(bean(model).string(Person.NAME)).checking(minLength()).to(component(nameField).text());
+		
+		binder.bind(binder).using(violationsToString()).to(component(messageLabel).text());
+
+		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+		
+		binder.bind();
+	}
+
 	private static Validator<String, String> minLength()
 	{
 		return new Validator<String, String>()

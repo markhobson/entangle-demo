@@ -68,25 +68,11 @@ public class ComplexBindingExample extends JFrame
 		add(createFramePanel());
 		setSize(new Dimension(600, 400));
 		
-		// create model
-		
 		model = new Person();
 		
-		// bind view to model
-		
-		Binder<String> binder = Binders.newBinder();
-		
-		// bind first editor violation to messageLabel
-		binder.bind(editor.getBinder()).using(firstString()).to(component(messageLabel).text());
-		binder.bind(editor.getBinder()).using(collectionToEmpty()).to(component(okButton).enabled());
-
-		// bind model to model area
-		// TODO: need to update model area when object properties change too, e.g. homeAddress
-		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
-		
-		binder.bind();
+		bind();
 	}
-	
+
 	// private methods --------------------------------------------------------
 	
 	private Component createFramePanel()
@@ -145,6 +131,21 @@ public class ComplexBindingExample extends JFrame
 		return panel;
 	}
 
+	private void bind()
+	{
+		Binder<String> binder = Binders.newBinder();
+		
+		// bind first editor violation to messageLabel
+		binder.bind(editor.getBinder()).using(firstString()).to(component(messageLabel).text());
+		binder.bind(editor.getBinder()).using(collectionToEmpty()).to(component(okButton).enabled());
+
+		// bind model to model area
+		// TODO: need to update model area when object properties change too, e.g. homeAddress
+		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+		
+		binder.bind();
+	}
+	
 	private static Converter<Collection<String>, String> firstString()
 	{
 		return new Converter<Collection<String>, String>()

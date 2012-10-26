@@ -52,16 +52,9 @@ public class BindingExample extends JFrame
 		add(createFramePanel());
 		pack();
 		
-		// create model
-		
 		model = new Person();
 		
-		// bind view to model
-		
-		Binder<Void> binder = Binders.newBinder();
-		binder.bind(bean(model).string(Person.NAME)).to(component(nameField).text());
-		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
-		binder.bind();
+		bind();
 	}
 	
 	// private methods --------------------------------------------------------
@@ -102,6 +95,14 @@ public class BindingExample extends JFrame
 		return panel;
 	}
 	
+	private void bind()
+	{
+		Binder<Void> binder = Binders.newBinder();
+		binder.bind(bean(model).string(Person.NAME)).to(component(nameField).text());
+		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+		binder.bind();
+	}
+
 	// main -------------------------------------------------------------------
 	
 	public static void main(String[] args)
