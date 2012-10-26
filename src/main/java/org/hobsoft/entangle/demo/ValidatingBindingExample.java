@@ -71,13 +71,9 @@ public class ValidatingBindingExample extends JFrame
 		
 		Binder<String> binder = Binders.newBinder();
 		
-		Validator<String, String> validator = minLength();
+		binder.bind(bean(model).string(Person.NAME)).checking(minLength()).to(component(nameField).text());
 		
-		binder.bind(bean(model).string(Person.NAME)).checking(validator).to(component(nameField).text());
-		
-		Converter<Collection<String>, String> converter = violationsToString();
-		
-		binder.bind(binder).using(converter).to(component(messageLabel).text());
+		binder.bind(binder).using(violationsToString()).to(component(messageLabel).text());
 
 		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
 		
