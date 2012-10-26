@@ -88,8 +88,9 @@ public class BindingExample extends JFrame
 		panel.setBorder(BorderFactory.createTitledBorder("Model"));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 		
-		modelArea = new JTextArea();
+		modelArea = new JTextArea(5, 40);
 		modelArea.setEditable(false);
+		modelArea.setLineWrap(true);
 		panel.add(modelArea);
 		
 		return panel;

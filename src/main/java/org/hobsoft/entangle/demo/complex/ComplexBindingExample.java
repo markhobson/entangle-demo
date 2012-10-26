@@ -16,7 +16,6 @@ package org.hobsoft.entangle.demo.complex;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,7 +65,7 @@ public class ComplexBindingExample extends JFrame
 		setLocationByPlatform(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(createFramePanel());
-		setSize(new Dimension(600, 400));
+		pack();
 		
 		model = new Person();
 		
@@ -89,7 +88,7 @@ public class ComplexBindingExample extends JFrame
 		JPanel panel = new JPanel(new BorderLayout(4, 4));
 		panel.setBorder(BorderFactory.createTitledBorder("Model"));
 		
-		modelArea = new JTextArea();
+		modelArea = new JTextArea(5, 40);
 		modelArea.setEditable(false);
 		modelArea.setLineWrap(true);
 		panel.add(modelArea, BorderLayout.CENTER);
