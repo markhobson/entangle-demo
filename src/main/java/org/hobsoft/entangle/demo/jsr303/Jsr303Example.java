@@ -73,20 +73,6 @@ public class Jsr303Example extends JFrame
 
 	// private methods --------------------------------------------------------
 	
-	private static JLabel createLabel(final int preferredWidth)
-	{
-		return new JLabel()
-		{
-			@Override
-			public Dimension getPreferredSize()
-			{
-				Dimension size = super.getPreferredSize();
-				size.width = preferredWidth;
-				return size;
-			}
-		};
-	}
-	
 	private JPanel createFramePanel()
 	{
 		JPanel panel = new JPanel();
@@ -133,6 +119,20 @@ public class Jsr303Example extends JFrame
 		return panel;
 	}
 
+	private static JLabel createLabel(final int preferredWidth)
+	{
+		return new JLabel()
+		{
+			@Override
+			public Dimension getPreferredSize()
+			{
+				Dimension size = super.getPreferredSize();
+				size.width = preferredWidth;
+				return size;
+			}
+		};
+	}
+	
 	private void bind()
 	{
 		Binder<ConstraintViolation<?>> binder = Binders.newBinder();
