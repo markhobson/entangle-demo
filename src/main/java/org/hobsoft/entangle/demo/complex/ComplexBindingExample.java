@@ -135,13 +135,21 @@ public class ComplexBindingExample extends JFrame
 	{
 		Binder<String> binder = Binders.newBinder();
 		
-		// bind first editor violation to messageLabel
-		binder.bind(editor.getBinder()).using(firstString()).to(component(messageLabel).text());
-		binder.bind(editor.getBinder()).using(collectionToEmpty()).to(component(okButton).enabled());
+		// bind violations to label
+		binder.bind(editor.getBinder())
+			.using(firstString())
+			.to(component(messageLabel).text());
+		
+		// bind violations to OK button
+		binder.bind(editor.getBinder())
+			.using(collectionToEmpty())
+			.to(component(okButton).enabled());
 
-		// bind model to model area
+		// bind model to area
 		// TODO: need to update model area when object properties change too, e.g. homeAddress
-		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+		binder.bind(bean(model))
+			.using(Converters.<Person>toStringConverter())
+			.to(component(modelArea).text());
 		
 		binder.bind();
 	}

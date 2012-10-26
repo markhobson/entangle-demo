@@ -137,14 +137,17 @@ public class Jsr303Example extends JFrame
 	{
 		Binder<ConstraintViolation<?>> binder = Binders.newBinder();
 		
+		// bind model to view
 		binder.bind(bean(model).string(Person.NAME))
 			.checking(Jsr303Validators.property(Jsr303Person.class, Person.NAME))
 			.to(component(nameField).text());
 		
+		// bind violations to label
 		binder.bind(binder)
 			.using(violationsToString())
 			.to(component(messageLabel).text());
 
+		// bind model to area
 		binder.bind(bean(model))
 			.using(Converters.<Jsr303Person>toStringConverter())
 			.to(component(modelArea).text());

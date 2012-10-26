@@ -98,8 +98,15 @@ public class BindingExample extends JFrame
 	private void bind()
 	{
 		Binder<Void> binder = Binders.newBinder();
-		binder.bind(bean(model).string(Person.NAME)).to(component(nameField).text());
-		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+
+		// bind model to view
+		binder.bind(bean(model).string(Person.NAME))
+			.to(component(nameField).text());
+		
+		// bind model to area
+		binder.bind(bean(model)).using(Converters.<Person>toStringConverter())
+			.to(component(modelArea).text());
+		
 		binder.bind();
 	}
 

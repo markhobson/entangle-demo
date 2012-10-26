@@ -134,11 +134,20 @@ public class ValidatingBindingExample extends JFrame
 	{
 		Binder<String> binder = Binders.newBinder();
 		
-		binder.bind(bean(model).string(Person.NAME)).checking(minLength()).to(component(nameField).text());
+		// bind model to view
+		binder.bind(bean(model).string(Person.NAME))
+			.checking(minLength())
+			.to(component(nameField).text());
 		
-		binder.bind(binder).using(violationsToString()).to(component(messageLabel).text());
+		// bind violations to label
+		binder.bind(binder)
+			.using(violationsToString())
+			.to(component(messageLabel).text());
 
-		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+		// bind model to area
+		binder.bind(bean(model))
+			.using(Converters.<Person>toStringConverter())
+			.to(component(modelArea).text());
 		
 		binder.bind();
 	}
