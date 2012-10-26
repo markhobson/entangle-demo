@@ -44,42 +44,84 @@ import static org.hobsoft.entangle.swing.SwingObservables.component;
  * 
  * @author Mark Hobson
  */
-public final class ComplexBindingExample
+public class ComplexBindingExample extends JFrame
 {
+	// fields -----------------------------------------------------------------
+	
+	private Person model;
+	
+	private JLabel message;
+	
+	private PersonEditor editor;
+	
+	private JButton okButton;
+	
+	private JTextArea modelArea;
+	
 	// constructors -----------------------------------------------------------
 	
-	private ComplexBindingExample()
+	public ComplexBindingExample()
 	{
-		throw new AssertionError();
-	}
-	
-	// public methods ---------------------------------------------------------
-	
-	public static void main(String[] args)
-	{
+		setTitle("Entangle Demo");
+		setLocationByPlatform(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		add(createFramePanel());
+		setSize(new Dimension(600, 400));
+		
 		// create model
 		
-		Person model = new Person();
+		model = new Person();
 		
+		// bind view to model
+		
+		Binder<String> binder = Binders.newBinder();
+		
+		// bind first editor violation to message
+		binder.bind(editor.getBinder()).using(firstString()).to(component(message).text());
+		binder.bind(editor.getBinder()).using(collectionToEmpty()).to(component(okButton).enabled());
+
+		// bind model to model area
+		// TODO: need to update model area when object properties change too, e.g. homeAddress
+		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+		
+		binder.bind();
+	}
+	
+	// private methods --------------------------------------------------------
+	
+	private Component createFramePanel()
+	{
+		JPanel framePanel = new JPanel(new BorderLayout(4, 4));
+		framePanel.add(createViewPanel(), BorderLayout.PAGE_START);
+		framePanel.add(createModelPanel(), BorderLayout.CENTER);
+		
+		return framePanel;
+	}
+
+	private Component createModelPanel()
+	{
 		JPanel modelPanel = new JPanel(new BorderLayout(4, 4));
 		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
 		
-		JTextArea modelArea = new JTextArea(model.toString());
+		modelArea = new JTextArea();
 		modelArea.setEditable(false);
 		modelArea.setLineWrap(true);
 		modelPanel.add(modelArea, BorderLayout.CENTER);
 		
-		// create view
-		
-		JLabel message = new JLabel(" ");
+		return modelPanel;
+	}
+
+	private Component createViewPanel()
+	{
+		message = new JLabel(" ");
 		message.setForeground(Color.RED);
 		message.setAlignmentX(Component.LEFT_ALIGNMENT);
 		
-		final PersonEditor editor = new PersonEditor();
+		editor = new PersonEditor();
 		editor.setModel(model);
 		editor.getBinder().bindUpTo(Phase.SET);
 		
-		JButton okButton = new JButton("OK");
+		okButton = new JButton("OK");
 		okButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent event)
@@ -100,39 +142,9 @@ public final class ComplexBindingExample
 		viewPanel.add(editor, BorderLayout.CENTER);
 		viewPanel.add(buttonPanel, BorderLayout.PAGE_END);
 		
-		// create frame
-		
-		JPanel framePanel = new JPanel(new BorderLayout(4, 4));
-		framePanel.add(viewPanel, BorderLayout.PAGE_START);
-		framePanel.add(modelPanel, BorderLayout.CENTER);
-		
-		final JFrame frame = new JFrame("Entangle Demo");
-		frame.setLocationByPlatform(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(framePanel);
-		frame.setSize(new Dimension(600, 400));
-		
-		// bind view to model
-		
-		Binder<String> binder = Binders.newBinder();
-		
-		// bind first editor violation to message
-		binder.bind(editor.getBinder()).using(firstString()).to(component(message).text());
-		binder.bind(editor.getBinder()).using(collectionToEmpty()).to(component(okButton).enabled());
-
-		// bind model to model area
-		// TODO: need to update model area when object properties change too, e.g. homeAddress
-		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
-		
-		binder.bind();
-		
-		// show view
-		
-		frame.setVisible(true);
+		return viewPanel;
 	}
-	
-	// private methods --------------------------------------------------------
-	
+
 	private static Converter<Collection<String>, String> firstString()
 	{
 		return new Converter<Collection<String>, String>()
@@ -163,5 +175,12 @@ public final class ComplexBindingExample
 				throw new UnsupportedOperationException();
 			}
 		};
+	}
+	
+	// main -------------------------------------------------------------------
+	
+	public static void main(String[] args)
+	{
+		new ComplexBindingExample().setVisible(true);
 	}
 }

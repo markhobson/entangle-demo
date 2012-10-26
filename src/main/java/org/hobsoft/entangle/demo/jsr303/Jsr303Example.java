@@ -44,67 +44,32 @@ import static org.hobsoft.entangle.swing.SwingObservables.component;
  * 
  * @author Mark Hobson
  */
-public final class Jsr303Example
+public class Jsr303Example extends JFrame
 {
+	// fields -----------------------------------------------------------------
+	
+	private Jsr303Person model;
+	
+	private JTextField name;
+	
+	private JLabel message;
+	
+	private JTextArea modelArea;
+	
 	// constructors -----------------------------------------------------------
 	
-	private Jsr303Example()
+	public Jsr303Example()
 	{
-		throw new AssertionError();
-	}
-	
-	// public methods ---------------------------------------------------------
-	
-	public static void main(String[] args)
-	{
-		// turn off hibernate-validator info
-		Logger.getLogger("org.hibernate.validator").setLevel(Level.WARNING);
-		
-		// create view
-		
-		JPanel viewPanel = new JPanel();
-		viewPanel.setBorder(BorderFactory.createTitledBorder("View"));
-		viewPanel.setLayout(new GridBagLayout());
-		
-		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.fill = GridBagConstraints.HORIZONTAL;
-		constraints.weightx = 1;
-		
-		viewPanel.add(new JLabel("Name"), constraints);
-		
-		JTextField name = new JTextField(20);
-		viewPanel.add(name, constraints);
-		
-		JLabel message = createLabel(300);
-		message.setForeground(Color.RED);
-		constraints.gridwidth = GridBagConstraints.REMAINDER;
-		viewPanel.add(message, constraints);
+		setTitle("Entangle Demo");
+		setLocationByPlatform(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		add(createFramePanel());
+		pack();
 		
 		// create model
 		
-		Jsr303Person model = new Jsr303Person();
+		model = new Jsr303Person();
 		
-		JPanel modelPanel = new JPanel();
-		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
-		modelPanel.setLayout(new BoxLayout(modelPanel, BoxLayout.LINE_AXIS));
-		
-		JTextArea modelArea = new JTextArea(model.toString());
-		modelArea.setEditable(false);
-		modelPanel.add(modelArea);
-		
-		// create frame
-		
-		JPanel framePanel = new JPanel();
-		framePanel.setLayout(new BoxLayout(framePanel, BoxLayout.PAGE_AXIS));
-		framePanel.add(viewPanel);
-		framePanel.add(modelPanel);
-		
-		JFrame frame = new JFrame("Entangle Demo");
-		frame.setLocationByPlatform(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(framePanel);
-		frame.pack();
-
 		// bind view to model
 		
 		Binder<ConstraintViolation<?>> binder = Binders.newBinder();
@@ -122,10 +87,6 @@ public final class Jsr303Example
 			.to(component(modelArea).text());
 		
 		binder.bind();
-
-		// show view
-		
-		frame.setVisible(true);
 	}
 	
 	// private methods --------------------------------------------------------
@@ -142,5 +103,61 @@ public final class Jsr303Example
 				return size;
 			}
 		};
+	}
+	
+	private JPanel createFramePanel()
+	{
+		JPanel framePanel = new JPanel();
+		framePanel.setLayout(new BoxLayout(framePanel, BoxLayout.PAGE_AXIS));
+		framePanel.add(createViewPanel());
+		framePanel.add(createModelPanel());
+		
+		return framePanel;
+	}
+
+	private JPanel createViewPanel()
+	{
+		JPanel viewPanel = new JPanel();
+		viewPanel.setBorder(BorderFactory.createTitledBorder("View"));
+		viewPanel.setLayout(new GridBagLayout());
+		
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.weightx = 1;
+		
+		viewPanel.add(new JLabel("Name"), constraints);
+		
+		name = new JTextField(20);
+		viewPanel.add(name, constraints);
+		
+		message = createLabel(300);
+		message.setForeground(Color.RED);
+		constraints.gridwidth = GridBagConstraints.REMAINDER;
+		viewPanel.add(message, constraints);
+		
+		return viewPanel;
+	}
+
+	private JPanel createModelPanel()
+	{
+		JPanel modelPanel = new JPanel();
+		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
+		modelPanel.setLayout(new BoxLayout(modelPanel, BoxLayout.LINE_AXIS));
+		
+		modelArea = new JTextArea();
+		modelArea.setEditable(false);
+		modelPanel.add(modelArea);
+		
+		return modelPanel;
+	}
+
+	// main -------------------------------------------------------------------
+	
+	public static void main(String[] args)
+	{
+		// turn off hibernate-validator info
+		Logger.getLogger("org.hibernate.validator").setLevel(Level.WARNING);
+		
+		new Jsr303Example().setVisible(true);
 	}
 }

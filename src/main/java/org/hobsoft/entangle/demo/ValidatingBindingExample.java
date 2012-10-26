@@ -41,21 +41,63 @@ import static org.hobsoft.entangle.swing.SwingObservables.component;
  * 
  * @author Mark Hobson
  */
-public final class ValidatingBindingExample
+public class ValidatingBindingExample extends JFrame
 {
+	// fields -----------------------------------------------------------------
+	
+	private Person model;
+	
+	private JTextField name;
+	
+	private JLabel message;
+	
+	private JTextArea modelArea;
+	
 	// constructors -----------------------------------------------------------
 	
-	private ValidatingBindingExample()
+	public ValidatingBindingExample()
 	{
-		throw new AssertionError();
+		setTitle("Entangle Demo");
+		setLocationByPlatform(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		add(createFramePanel());
+		pack();
+		
+		// create model
+		
+		model = new Person();
+		
+		// bind view to model
+		
+		Binder<String> binder = Binders.newBinder();
+		
+		Validator<String, String> validator = minLength();
+		
+		binder.bind(bean(model).string(Person.NAME)).checking(validator).to(component(name).text());
+		
+		Converter<Collection<String>, String> converter = violationsToString();
+		
+		binder.bind(binder).using(converter).to(component(message).text());
+
+		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
+		
+		binder.bind();
+	}
+
+	// private methods --------------------------------------------------------
+	
+	private JPanel createFramePanel()
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.add(createViewPanel());
+		panel.add(createModelPanel());
+		
+		return panel;
 	}
 	
-	// public methods ---------------------------------------------------------
-	
-	public static void main(String[] args)
+	private JPanel createViewPanel()
 	{
-		// create view
-		
 		JPanel viewPanel = new JPanel();
 		viewPanel.setBorder(BorderFactory.createTitledBorder("View"));
 		viewPanel.setLayout(new GridBagLayout());
@@ -66,44 +108,47 @@ public final class ValidatingBindingExample
 		
 		viewPanel.add(new JLabel("Name"), constraints);
 		
-		JTextField name = new JTextField(20);
+		name = new JTextField(20);
 		viewPanel.add(name, constraints);
 		
-		JLabel message = createLabel(300);
+		message = createLabel(300);
 		message.setForeground(Color.RED);
 		constraints.gridwidth = GridBagConstraints.REMAINDER;
 		viewPanel.add(message, constraints);
 		
-		// create model
-		
-		Person model = new Person();
-		
+		return viewPanel;
+	}
+
+	private JPanel createModelPanel()
+	{
 		JPanel modelPanel = new JPanel();
 		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
 		modelPanel.setLayout(new BoxLayout(modelPanel, BoxLayout.LINE_AXIS));
 		
-		JTextArea modelArea = new JTextArea(model.toString());
+		modelArea = new JTextArea();
 		modelArea.setEditable(false);
 		modelPanel.add(modelArea);
 		
-		// create frame
-		
-		JPanel framePanel = new JPanel();
-		framePanel.setLayout(new BoxLayout(framePanel, BoxLayout.PAGE_AXIS));
-		framePanel.add(viewPanel);
-		framePanel.add(modelPanel);
-		
-		JFrame frame = new JFrame("Entangle Demo");
-		frame.setLocationByPlatform(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(framePanel);
-		frame.pack();
+		return modelPanel;
+	}
 
-		// bind view to model
-		
-		Binder<String> binder = Binders.newBinder();
-		
-		Validator<String, String> validator = new Validator<String, String>()
+	private static JLabel createLabel(final int preferredWidth)
+	{
+		return new JLabel()
+		{
+			@Override
+			public Dimension getPreferredSize()
+			{
+				Dimension size = super.getPreferredSize();
+				size.width = preferredWidth;
+				return size;
+			}
+		};
+	}
+	
+	private static Validator<String, String> minLength()
+	{
+		return new Validator<String, String>()
 		{
 			public Collection<String> validate(String string)
 			{
@@ -111,10 +156,11 @@ public final class ValidatingBindingExample
 					? Collections.singleton("* Name must be 3 characters or more") : null;
 			}
 		};
-		
-		binder.bind(bean(model).string(Person.NAME)).checking(validator).to(component(name).text());
-		
-		Converter<Collection<String>, String> converter = new Converter<Collection<String>, String>()
+	}
+	
+	private static Converter<Collection<String>, String> violationsToString()
+	{
+		return new Converter<Collection<String>, String>()
 		{
 			public String convert(Collection<String> strings)
 			{
@@ -138,31 +184,12 @@ public final class ValidatingBindingExample
 				throw new UnsupportedOperationException();
 			}
 		};
-		
-		binder.bind(binder).using(converter).to(component(message).text());
-
-		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
-		
-		binder.bind();
-
-		// show view
-		
-		frame.setVisible(true);
 	}
 	
-	// private methods --------------------------------------------------------
+	// main -------------------------------------------------------------------
 	
-	private static JLabel createLabel(final int preferredWidth)
+	public static void main(String[] args)
 	{
-		return new JLabel()
-		{
-			@Override
-			public Dimension getPreferredSize()
-			{
-				Dimension size = super.getPreferredSize();
-				size.width = preferredWidth;
-				return size;
-			}
-		};
+		new ValidatingBindingExample().setVisible(true);
 	}
 }
