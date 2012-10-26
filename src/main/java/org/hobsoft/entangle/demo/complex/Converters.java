@@ -27,7 +27,7 @@ import org.hobsoft.entangle.Converter;
  * 
  * @author Mark Hobson
  */
-public final class Converters
+final class Converters
 {
 	// constants --------------------------------------------------------------
 	

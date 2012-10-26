@@ -24,7 +24,7 @@ import org.hobsoft.entangle.Validator;
  * 
  * @author Mark Hobson
  */
-public final class Validators
+final class Validators
 {
 	// constructors -----------------------------------------------------------
 	
