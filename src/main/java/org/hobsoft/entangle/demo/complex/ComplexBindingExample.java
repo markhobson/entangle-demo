@@ -83,19 +83,6 @@ public class ComplexBindingExample extends JFrame
 		return panel;
 	}
 
-	private Component createModelPanel()
-	{
-		JPanel panel = new JPanel(new BorderLayout(4, 4));
-		panel.setBorder(BorderFactory.createTitledBorder("Model"));
-		
-		modelArea = new JTextArea(5, 40);
-		modelArea.setEditable(false);
-		modelArea.setLineWrap(true);
-		panel.add(modelArea, BorderLayout.CENTER);
-		
-		return panel;
-	}
-
 	private Component createViewPanel()
 	{
 		messageLabel = new JLabel(" ");
@@ -126,6 +113,19 @@ public class ComplexBindingExample extends JFrame
 		panel.add(messageLabel, BorderLayout.PAGE_START);
 		panel.add(editor, BorderLayout.CENTER);
 		panel.add(buttonPanel, BorderLayout.PAGE_END);
+		
+		return panel;
+	}
+
+	private Component createModelPanel()
+	{
+		JPanel panel = new JPanel(new BorderLayout(4, 4));
+		panel.setBorder(BorderFactory.createTitledBorder("Model"));
+		
+		modelArea = new JTextArea(5, 40);
+		modelArea.setEditable(false);
+		modelArea.setLineWrap(true);
+		panel.add(modelArea, BorderLayout.CENTER);
 		
 		return panel;
 	}
