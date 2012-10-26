@@ -47,9 +47,9 @@ public class ValidatingBindingExample extends JFrame
 	
 	private Person model;
 	
-	private JTextField name;
+	private JTextField nameField;
 	
-	private JLabel message;
+	private JLabel messageLabel;
 	
 	private JTextArea modelArea;
 	
@@ -73,11 +73,11 @@ public class ValidatingBindingExample extends JFrame
 		
 		Validator<String, String> validator = minLength();
 		
-		binder.bind(bean(model).string(Person.NAME)).checking(validator).to(component(name).text());
+		binder.bind(bean(model).string(Person.NAME)).checking(validator).to(component(nameField).text());
 		
 		Converter<Collection<String>, String> converter = violationsToString();
 		
-		binder.bind(binder).using(converter).to(component(message).text());
+		binder.bind(binder).using(converter).to(component(messageLabel).text());
 
 		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
 		
@@ -98,38 +98,38 @@ public class ValidatingBindingExample extends JFrame
 	
 	private JPanel createViewPanel()
 	{
-		JPanel viewPanel = new JPanel();
-		viewPanel.setBorder(BorderFactory.createTitledBorder("View"));
-		viewPanel.setLayout(new GridBagLayout());
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createTitledBorder("View"));
+		panel.setLayout(new GridBagLayout());
 		
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 1;
 		
-		viewPanel.add(new JLabel("Name"), constraints);
+		panel.add(new JLabel("Name"), constraints);
 		
-		name = new JTextField(20);
-		viewPanel.add(name, constraints);
+		nameField = new JTextField(20);
+		panel.add(nameField, constraints);
 		
-		message = createLabel(300);
-		message.setForeground(Color.RED);
+		messageLabel = createLabel(300);
+		messageLabel.setForeground(Color.RED);
 		constraints.gridwidth = GridBagConstraints.REMAINDER;
-		viewPanel.add(message, constraints);
+		panel.add(messageLabel, constraints);
 		
-		return viewPanel;
+		return panel;
 	}
 
 	private JPanel createModelPanel()
 	{
-		JPanel modelPanel = new JPanel();
-		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
-		modelPanel.setLayout(new BoxLayout(modelPanel, BoxLayout.LINE_AXIS));
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createTitledBorder("Model"));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 		
 		modelArea = new JTextArea();
 		modelArea.setEditable(false);
-		modelPanel.add(modelArea);
+		panel.add(modelArea);
 		
-		return modelPanel;
+		return panel;
 	}
 
 	private static JLabel createLabel(final int preferredWidth)

@@ -50,7 +50,7 @@ public class ComplexBindingExample extends JFrame
 	
 	private Person model;
 	
-	private JLabel message;
+	private JLabel messageLabel;
 	
 	private PersonEditor editor;
 	
@@ -76,8 +76,8 @@ public class ComplexBindingExample extends JFrame
 		
 		Binder<String> binder = Binders.newBinder();
 		
-		// bind first editor violation to message
-		binder.bind(editor.getBinder()).using(firstString()).to(component(message).text());
+		// bind first editor violation to messageLabel
+		binder.bind(editor.getBinder()).using(firstString()).to(component(messageLabel).text());
 		binder.bind(editor.getBinder()).using(collectionToEmpty()).to(component(okButton).enabled());
 
 		// bind model to model area
@@ -91,31 +91,31 @@ public class ComplexBindingExample extends JFrame
 	
 	private Component createFramePanel()
 	{
-		JPanel framePanel = new JPanel(new BorderLayout(4, 4));
-		framePanel.add(createViewPanel(), BorderLayout.PAGE_START);
-		framePanel.add(createModelPanel(), BorderLayout.CENTER);
+		JPanel panel = new JPanel(new BorderLayout(4, 4));
+		panel.add(createViewPanel(), BorderLayout.PAGE_START);
+		panel.add(createModelPanel(), BorderLayout.CENTER);
 		
-		return framePanel;
+		return panel;
 	}
 
 	private Component createModelPanel()
 	{
-		JPanel modelPanel = new JPanel(new BorderLayout(4, 4));
-		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
+		JPanel panel = new JPanel(new BorderLayout(4, 4));
+		panel.setBorder(BorderFactory.createTitledBorder("Model"));
 		
 		modelArea = new JTextArea();
 		modelArea.setEditable(false);
 		modelArea.setLineWrap(true);
-		modelPanel.add(modelArea, BorderLayout.CENTER);
+		panel.add(modelArea, BorderLayout.CENTER);
 		
-		return modelPanel;
+		return panel;
 	}
 
 	private Component createViewPanel()
 	{
-		message = new JLabel(" ");
-		message.setForeground(Color.RED);
-		message.setAlignmentX(Component.LEFT_ALIGNMENT);
+		messageLabel = new JLabel(" ");
+		messageLabel.setForeground(Color.RED);
+		messageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		
 		editor = new PersonEditor();
 		editor.setModel(model);
@@ -136,13 +136,13 @@ public class ComplexBindingExample extends JFrame
 		buttonPanel.add(okButton);
 		buttonPanel.add(cancelButton);
 		
-		JPanel viewPanel = new JPanel(new BorderLayout(4, 4));
-		viewPanel.setBorder(BorderFactory.createTitledBorder("View"));
-		viewPanel.add(message, BorderLayout.PAGE_START);
-		viewPanel.add(editor, BorderLayout.CENTER);
-		viewPanel.add(buttonPanel, BorderLayout.PAGE_END);
+		JPanel panel = new JPanel(new BorderLayout(4, 4));
+		panel.setBorder(BorderFactory.createTitledBorder("View"));
+		panel.add(messageLabel, BorderLayout.PAGE_START);
+		panel.add(editor, BorderLayout.CENTER);
+		panel.add(buttonPanel, BorderLayout.PAGE_END);
 		
-		return viewPanel;
+		return panel;
 	}
 
 	private static Converter<Collection<String>, String> firstString()

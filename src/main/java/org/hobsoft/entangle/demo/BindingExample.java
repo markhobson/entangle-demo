@@ -38,7 +38,7 @@ public class BindingExample extends JFrame
 	
 	private Person model;
 	
-	private JTextField name;
+	private JTextField nameField;
 	
 	private JTextArea modelArea;
 	
@@ -59,7 +59,7 @@ public class BindingExample extends JFrame
 		// bind view to model
 		
 		Binder<Void> binder = Binders.newBinder();
-		binder.bind(bean(model).string(Person.NAME)).to(component(name).text());
+		binder.bind(bean(model).string(Person.NAME)).to(component(nameField).text());
 		binder.bind(bean(model)).using(Converters.<Person>toStringConverter()).to(component(modelArea).text());
 		binder.bind();
 	}
@@ -68,38 +68,38 @@ public class BindingExample extends JFrame
 	
 	private JPanel createFramePanel()
 	{
-		JPanel framePanel = new JPanel();
-		framePanel.setLayout(new BoxLayout(framePanel, BoxLayout.PAGE_AXIS));
-		framePanel.add(createViewPanel());
-		framePanel.add(createModelPanel());
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.add(createViewPanel());
+		panel.add(createModelPanel());
 		
-		return framePanel;
+		return panel;
 	}
 	
 	private JPanel createViewPanel()
 	{
-		JPanel viewPanel = new JPanel();
-		viewPanel.setBorder(BorderFactory.createTitledBorder("View"));
-		viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.LINE_AXIS));
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createTitledBorder("View"));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 		
-		viewPanel.add(new JLabel("Name"));
-		name = new JTextField(20);
-		viewPanel.add(name);
+		panel.add(new JLabel("Name"));
+		nameField = new JTextField(20);
+		panel.add(nameField);
 		
-		return viewPanel;
+		return panel;
 	}
 	
 	private JPanel createModelPanel()
 	{
-		JPanel modelPanel = new JPanel();
-		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
-		modelPanel.setLayout(new BoxLayout(modelPanel, BoxLayout.LINE_AXIS));
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createTitledBorder("Model"));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 		
 		modelArea = new JTextArea();
 		modelArea.setEditable(false);
-		modelPanel.add(modelArea);
+		panel.add(modelArea);
 		
-		return modelPanel;
+		return panel;
 	}
 	
 	// main -------------------------------------------------------------------

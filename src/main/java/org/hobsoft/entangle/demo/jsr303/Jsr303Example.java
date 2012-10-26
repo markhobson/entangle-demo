@@ -50,9 +50,9 @@ public class Jsr303Example extends JFrame
 	
 	private Jsr303Person model;
 	
-	private JTextField name;
+	private JTextField nameField;
 	
-	private JLabel message;
+	private JLabel messageLabel;
 	
 	private JTextArea modelArea;
 	
@@ -76,11 +76,11 @@ public class Jsr303Example extends JFrame
 		
 		binder.bind(bean(model).string(Person.NAME))
 			.checking(Jsr303Validators.property(Jsr303Person.class, Person.NAME))
-			.to(component(name).text());
+			.to(component(nameField).text());
 		
 		binder.bind(binder)
 			.using(violationsToString())
-			.to(component(message).text());
+			.to(component(messageLabel).text());
 
 		binder.bind(bean(model))
 			.using(Converters.<Jsr303Person>toStringConverter())
@@ -107,48 +107,48 @@ public class Jsr303Example extends JFrame
 	
 	private JPanel createFramePanel()
 	{
-		JPanel framePanel = new JPanel();
-		framePanel.setLayout(new BoxLayout(framePanel, BoxLayout.PAGE_AXIS));
-		framePanel.add(createViewPanel());
-		framePanel.add(createModelPanel());
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.add(createViewPanel());
+		panel.add(createModelPanel());
 		
-		return framePanel;
+		return panel;
 	}
 
 	private JPanel createViewPanel()
 	{
-		JPanel viewPanel = new JPanel();
-		viewPanel.setBorder(BorderFactory.createTitledBorder("View"));
-		viewPanel.setLayout(new GridBagLayout());
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createTitledBorder("View"));
+		panel.setLayout(new GridBagLayout());
 		
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 1;
 		
-		viewPanel.add(new JLabel("Name"), constraints);
+		panel.add(new JLabel("Name"), constraints);
 		
-		name = new JTextField(20);
-		viewPanel.add(name, constraints);
+		nameField = new JTextField(20);
+		panel.add(nameField, constraints);
 		
-		message = createLabel(300);
-		message.setForeground(Color.RED);
+		messageLabel = createLabel(300);
+		messageLabel.setForeground(Color.RED);
 		constraints.gridwidth = GridBagConstraints.REMAINDER;
-		viewPanel.add(message, constraints);
+		panel.add(messageLabel, constraints);
 		
-		return viewPanel;
+		return panel;
 	}
 
 	private JPanel createModelPanel()
 	{
-		JPanel modelPanel = new JPanel();
-		modelPanel.setBorder(BorderFactory.createTitledBorder("Model"));
-		modelPanel.setLayout(new BoxLayout(modelPanel, BoxLayout.LINE_AXIS));
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createTitledBorder("Model"));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 		
 		modelArea = new JTextArea();
 		modelArea.setEditable(false);
-		modelPanel.add(modelArea);
+		panel.add(modelArea);
 		
-		return modelPanel;
+		return panel;
 	}
 
 	// main -------------------------------------------------------------------
