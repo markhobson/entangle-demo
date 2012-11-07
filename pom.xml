@@ -24,7 +24,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>entangle-demo</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 	
 	<name>Entangle Demo</name>
 	<description>Entangle demonstrations.</description>
@@ -34,7 +34,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:markhobson/entangle-demo.git</connection>
 		<developerConnection>scm:git:git@github.com:markhobson/entangle-demo.git</developerConnection>
-		<tag>0.1.0</tag>
+		<tag>HEAD</tag>
 		<url>https://github.com/markhobson/entangle-demo</url>
 	</scm>
 	
