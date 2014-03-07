@@ -45,6 +45,8 @@ public class AddressEditor extends EditorPanel<Address, String>
 	
 	public AddressEditor()
 	{
+		super(Address.class);
+		
 		setLayout(new GridBagLayout());
 		
 		Binder<String> binder = getBinder();

@@ -37,14 +37,18 @@ public abstract class EditorPanel<T, V> extends JPanel
 	
 	// fields -----------------------------------------------------------------
 	
+	private final Class<T> modelType;
+	
 	private final Binder<V> binder;
 	
 	private T model;
 	
 	// constructors -----------------------------------------------------------
 	
-	public EditorPanel()
+	public EditorPanel(Class<T> modelType)
 	{
+		this.modelType = modelType;
+		
 		binder = Binders.<V>newBinder();
 	}
 	
@@ -69,7 +73,7 @@ public abstract class EditorPanel<T, V> extends JPanel
 	
 	public BeanObservables<T> model()
 	{
-		return (BeanObservables<T>) Observables.bean(this).property(MODEL);
+		return Observables.bean(this).property(MODEL, modelType);
 	}
 	
 	public Binder<V> getBinder()

@@ -54,6 +54,8 @@ public class PersonEditor extends EditorPanel<Person, String>
 	
 	public PersonEditor()
 	{
+		super(Person.class);
+		
 		setLayout(new GridBagLayout());
 
 		Binder<String> binder = getBinder();
